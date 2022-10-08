@@ -30,6 +30,7 @@
 ## Como rodar a aplicação :arrow_forward:
 
 ## Tecnologias
+- [X] [PySimpleGUI](https://www.pysimplegui.org/en/latest/)
 
 ## Desenvolvedora
 
