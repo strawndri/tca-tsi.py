@@ -3,8 +3,8 @@ from PySimpleGUI import (
     Column, VSeparator,
     )
 
-def set_button_style(text='', key='', color='#FC9DBD', size=(24, 1)):
-    return Button(text, key=key, button_color=color, size=size)
+def set_button_style(text='', key='', color='#FC9DBD', size=(24, 1), status = False):
+    return Button(text, key=key, button_color=color, size=size, disabled = status)
 
 def window_home():
     layout = [
@@ -27,7 +27,7 @@ def window_reading():
         [set_button_style(text='Imagem', key='-IMAGE-'), set_button_style(text='Vídeo', key='-VIDEO-')],
         [Text('Escolha a ação:')], 
         [set_button_style(text='Upload', key='-UPLOAD-'), set_button_style(text='Link', key='-LINK-')],
-        [set_button_style(text='Realizar leitura', key='-DO_READING-')],
+        [set_button_style(text='Realizar leitura', key='-DO_READING-', color='#D1D1D1', status = True)],
         [set_button_style(text='Copiar texto', key='-COPY-'), set_button_style(text='Download', key='-DOWNLOAD-')],
     ]
 
