@@ -15,6 +15,7 @@ class NewReading(Screen):
 class WindowManager(ScreenManager):
     pass
 
+
 kv = Builder.load_file('main.kv')
 
 class MainApp(App):

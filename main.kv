@@ -35,4 +35,61 @@ ScreenManager:
                         root.manager.transition.direction: 'right'
 
 <NewReading>:
-    name: 'new_Reading'
+    name: 'newReading'
+
+    BoxLayout:
+
+        orientation: 'vertical'
+
+        ActionBar:
+            ActionView:
+                ActionPrevious: 
+                    title: 'Home'
+                    on_release: 
+                        app.root.current = 'home'
+                        root.manager.transition.direction: 'right'
+        Label:
+            id: 'title'
+            text: 'Nova leitura'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    id: ''
+                    text: 'Selecione o formato do arquivo:'
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        text: 'Imagem'
+                    Button:
+                        text: 'Vídeo'
+                Label: 
+                    id: ''
+                    text: 'O que deseja fazer?'
+                    
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        text: 'Upload'
+                    Button:
+                        text: 'Link'
+
+                Button: 
+                    text: 'Realizar leitura'
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        text: 'Copiar texto'
+                    Button:
+                        text: 'Salvar como pdf'
+
+            BoxLayout:
+                orientation: 'vertical'
+                Image:
+                    source: './img/backgroun.jpg'
+                    size: self.texture_size
+                Label:
+                    id: 'result'
