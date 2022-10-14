@@ -9,9 +9,25 @@ ScreenManager:
     name: 'home'
 
     BoxLayout:
+        padding: 50
+        canvas:
+            Color: 
+                rgb: (0.45, 0.55, 0.67, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
         BoxLayout:
             orientation: 'vertical'
             size: root.width, root.height
+            spacing: 30
+            padding: 20
+            canvas:
+                Color: 
+                    rgb: (0.96, 0.96, 0.96, 0.96)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
 
             Button:
                 text: 'Acessar guia do tsi.py'
