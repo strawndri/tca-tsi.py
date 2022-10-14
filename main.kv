@@ -24,5 +24,15 @@ ScreenManager:
 <Guide>:
     name: 'guide'
 
+    BoxLayout:
+        orientation: 'vertical'
+        ActionBar:
+            ActionView:
+                ActionPrevious: 
+                    title: 'Home'
+                    on_release: 
+                        app.root.current = 'home'
+                        root.manager.transition.direction: 'right'
+
 <NewReading>:
     name: 'new_Reading'
