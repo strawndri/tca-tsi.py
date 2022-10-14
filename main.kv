@@ -6,7 +6,23 @@ ScreenManager:
     NewReading:
 
 <Home>:
+    name: 'home'
 
+    BoxLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width, root.height
+
+            Button:
+                text: 'Acessar guia do tsi.py'
+                font_size: 32
+                on_release: app.root.current = 'guide'
+            Button:
+                text: 'Realizar nova leitura'
+                font_size: 32
+                on_release: app.root.current = 'newReading'
 <Guide>:
+    name: 'guide'
 
 <NewReading>:
+    name: 'new_Reading'
