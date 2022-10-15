@@ -7,105 +7,167 @@ ScreenManager:
 
 <Home>:
     name: 'home'
-
+    
     BoxLayout:
-        padding: 50
+        padding: (100, 70, 100, 70)
         canvas:
             Color: 
                 rgb: (0.45, 0.55, 0.67, 1)
             Rectangle:
                 size: self.size
                 pos: self.pos
-
         BoxLayout:
             orientation: 'vertical'
             size: root.width, root.height
-            spacing: 30
-            padding: 20
+            spacing: 20
+            padding: 50
             canvas:
                 Color: 
                     rgb: (0.96, 0.96, 0.96, 0.96)
                 Rectangle:
                     size: self.size
                     pos: self.pos
-
-            Button:
+            Image:
+                source: './img/logo.png'
+                size: self.texture_size
+            MyButton:
                 text: 'Acessar guia do tsi.py'
                 font_size: 32
+                size_hint: (1, 0.5)
                 on_release: app.root.current = 'guide'
-            Button:
+            MyButton:
                 text: 'Realizar nova leitura'
                 font_size: 32
+                size_hint: (1, 0.5)
                 on_release: app.root.current = 'newReading'
 <Guide>:
     name: 'guide'
 
     BoxLayout:
         orientation: 'vertical'
+        canvas:
+            Color: 
+                rgb: (0.96, 0.96, 0.96, 0.96)
+            Rectangle:
+                size: self.size
+                pos: self.pos
         ActionBar:
+            background_color: (0.3, 0.46, 0.61, 1)
+            background_image: ''
             ActionView:
                 ActionPrevious: 
                     title: 'Home'
+                    app_icon: "img/home-1x.png"
                     on_release: 
                         app.root.current = 'home'
                         root.manager.transition.direction: 'right'
 
 <NewReading>:
     name: 'newReading'
-
     BoxLayout:
-
         orientation: 'vertical'
-
+        canvas:
+            Color: 
+                rgb: (0.96, 0.96, 0.96, 0.96)
+            Rectangle:
+                size: self.size
+                pos: self.pos
         ActionBar:
+            background_color: (0.3, 0.46, 0.61, 1)
+            background_image: ''
             ActionView:
                 ActionPrevious: 
                     title: 'Home'
+                    app_icon: "img/home-1x.png"
                     on_release: 
                         app.root.current = 'home'
                         root.manager.transition.direction: 'right'
         Label:
             id: 'title'
             text: 'Nova leitura'
+            color: .2, .2, .2, 1
 
         BoxLayout:
             orientation: 'horizontal'
+            padding: 16
+            spacing: 12
 
             BoxLayout:
                 orientation: 'vertical'
+                spacing: 12
+
                 Label:
                     id: ''
                     text: 'Selecione o formato do arquivo:'
+                    color: .2, .2, .2, 1
                 BoxLayout:
                     orientation: 'horizontal'
-                    Button:
+                    spacing: 12
+                    MyButton:
                         text: 'Imagem'
-                    Button:
+                        font_size: 22
+                        size_hint: (1, 1.5)
+                    MyButton:
                         text: 'Vídeo'
+                        font_size: 22
+                        size_hint: (1, 1.5)
                 Label: 
                     id: ''
                     text: 'O que deseja fazer?'
+                    color: (.2, .2, .2, 1)
                     
                 BoxLayout:
                     orientation: 'horizontal'
-                    Button:
-                        text: 'Upload'
-                    Button:
-                        text: 'Link'
+                    spacing: 12
 
-                Button: 
+                    MyButton:
+                        text: 'Upload'
+                        font_size: 22
+                        size_hint: (1, 1.5)
+                    MyButton:
+                        text: 'Link'
+                        font_size: 22
+                        size_hint: (1, 1.5)
+                MyButton: 
                     text: 'Realizar leitura'
+                    font_size: 24
+                    size_hint: (1, 2)
                 BoxLayout:
                     orientation: 'horizontal'
-                    Button:
+                    spacing: 12
+
+                    MyButton:
                         text: 'Copiar texto'
-                    Button:
+                        font_size: 22
+                        size_hint: (1, 1.5)
+                    MyButton:
                         text: 'Salvar como pdf'
+                        font_size: 22
+                        size_hint: (1, 1.5)
 
             BoxLayout:
                 orientation: 'vertical'
+                spacing: 12
+
                 Image:
-                    source: './img/backgroun.jpg'
+                    source: './img/background.jpg'
                     size: self.texture_size
                 Label:
                     id: 'result'
+                    color: (.2, .2, .2, 1)
+                    background_color: (0.89, 0.89, 0.89, 0.89)
+
+<MyButton@Button>:
+    font_family: 'Arial'
+    background_color: 0, 0, 0, 0
+    background_normal: ''
+    color: .2, .2, .2, 1
+    on_release: 
+        self.background_color = (0.98, .61, .74, .85)
+    canvas.before:
+        Color:
+            rgba: (.98, .61, .74, .85)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [5]
