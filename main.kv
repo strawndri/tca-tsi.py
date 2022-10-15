@@ -1,4 +1,5 @@
 #:kivy 1.9.2
+#:import utils kivy.utils
 
 ScreenManager:
     Home:
@@ -7,38 +8,43 @@ ScreenManager:
 
 <Home>:
     name: 'home'
-    
-    BoxLayout:
-        padding: (100, 70, 100, 70)
+    FloatLayout:
+        padding: 100, 20, 100, 20
         canvas:
             Color: 
-                rgb: (0.45, 0.55, 0.67, 1)
+                rgba: utils.get_color_from_hex('#293540')
             Rectangle:
                 size: self.size
                 pos: self.pos
         BoxLayout:
             orientation: 'vertical'
-            size: root.width, root.height
+            size_hint: None, None
+            size: 600, 400
+            center: root.center
+            padding: 100, 20, 100, 20
             spacing: 20
-            padding: 50
-            canvas:
-                Color: 
-                    rgb: (0.96, 0.96, 0.96, 0.96)
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
             Image:
+                id: 'logo'
                 source: './img/logo.png'
                 size: self.texture_size
-            MyButton:
+            Label:
+                id: 'legend'
+                text: 'Software de leitura de imagens a partir de visão computacional.'
+                font_size: 22
+                canvas.before:
+                    Color:
+                        rgba: utils.get_color_from_hex('#EEE')
+            BtnPrimary:
                 text: 'Acessar guia do tsi.py'
                 font_size: 32
-                size_hint: (1, 0.5)
+                size: 436, 72
+                size_hint: None, None
                 on_release: app.root.current = 'guide'
-            MyButton:
+            BtnPrimary:
                 text: 'Realizar nova leitura'
                 font_size: 32
-                size_hint: (1, 0.5)
+                size: 436, 72
+                size_hint: None, None
                 on_release: app.root.current = 'newReading'
 <Guide>:
     name: 'guide'
@@ -56,8 +62,8 @@ ScreenManager:
             background_image: ''
             ActionView:
                 ActionPrevious: 
-                    title: 'Home'
-                    app_icon: "img/home-1x.png"
+                    title: ''
+                    app_icon: ''
                     on_release: 
                         app.root.current = 'home'
                         root.manager.transition.direction: 'right'
@@ -77,8 +83,8 @@ ScreenManager:
             background_image: ''
             ActionView:
                 ActionPrevious: 
-                    title: 'Home'
-                    app_icon: "img/home-1x.png"
+                    title: 'oi'
+                    app_icon: ''
                     on_release: 
                         app.root.current = 'home'
                         root.manager.transition.direction: 'right'
@@ -103,11 +109,11 @@ ScreenManager:
                 BoxLayout:
                     orientation: 'horizontal'
                     spacing: 12
-                    MyButton:
+                    BtnPrimary:
                         text: 'Imagem'
                         font_size: 22
                         size_hint: (1, 1.5)
-                    MyButton:
+                    BtnPrimary:
                         text: 'Vídeo'
                         font_size: 22
                         size_hint: (1, 1.5)
@@ -120,15 +126,15 @@ ScreenManager:
                     orientation: 'horizontal'
                     spacing: 12
 
-                    MyButton:
+                    BtnPrimary:
                         text: 'Upload'
                         font_size: 22
                         size_hint: (1, 1.5)
-                    MyButton:
+                    BtnPrimary:
                         text: 'Link'
                         font_size: 22
                         size_hint: (1, 1.5)
-                MyButton: 
+                BtnPrimary: 
                     text: 'Realizar leitura'
                     font_size: 24
                     size_hint: (1, 2)
@@ -136,11 +142,11 @@ ScreenManager:
                     orientation: 'horizontal'
                     spacing: 12
 
-                    MyButton:
+                    BtnPrimary:
                         text: 'Copiar texto'
                         font_size: 22
                         size_hint: (1, 1.5)
-                    MyButton:
+                    BtnPrimary:
                         text: 'Salvar como pdf'
                         font_size: 22
                         size_hint: (1, 1.5)
@@ -157,16 +163,16 @@ ScreenManager:
                     color: (.2, .2, .2, 1)
                     background_color: (0.89, 0.89, 0.89, 0.89)
 
-<MyButton@Button>:
+<BtnPrimary@Button>:
     font_family: 'Arial'
+    color: (.2, .2, .2, 1)
     background_color: 0, 0, 0, 0
     background_normal: ''
-    color: .2, .2, .2, 1
     on_release: 
-        self.background_color = (0.98, .61, .74, .85)
+        self.background_color = utils.get_color_from_hex('#E495B1')
     canvas.before:
         Color:
-            rgba: (.98, .61, .74, .85)
+            rgba: utils.get_color_from_hex('#E495B1')
         RoundedRectangle:
             size: self.size
             pos: self.pos
