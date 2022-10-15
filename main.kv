@@ -19,7 +19,7 @@ ScreenManager:
         BoxLayout:
             orientation: 'vertical'
             size_hint: None, None
-            size: 600, 400
+            size: 650, 400
             center: root.center
             padding: 100, 20, 100, 20
             spacing: 20
@@ -48,18 +48,19 @@ ScreenManager:
                 on_release: app.root.current = 'newReading'
 <Guide>:
     name: 'guide'
-
     BoxLayout:
         orientation: 'vertical'
         canvas:
             Color: 
-                rgb: (0.96, 0.96, 0.96, 0.96)
+                rgb:  utils.get_color_from_hex('#F9F9F9')
             Rectangle:
                 size: self.size
                 pos: self.pos
+        
         ActionBar:
-            background_color: (0.3, 0.46, 0.61, 1)
+            background_color: utils.get_color_from_hex('#293540')
             background_image: ''
+            padding: 10
             ActionView:
                 ActionPrevious: 
                     title: ''
@@ -67,6 +68,9 @@ ScreenManager:
                     on_release: 
                         app.root.current = 'home'
                         root.manager.transition.direction: 'right'
+                    canvas.before:
+                        Color:
+                            rgba: utils.get_color_from_hex('#EEBECF')
 
 <NewReading>:
     name: 'newReading'
@@ -74,95 +78,110 @@ ScreenManager:
         orientation: 'vertical'
         canvas:
             Color: 
-                rgb: (0.96, 0.96, 0.96, 0.96)
+                rgba: (249/255, 249/255, 249/255, 1)
             Rectangle:
                 size: self.size
                 pos: self.pos
         ActionBar:
-            background_color: (0.3, 0.46, 0.61, 1)
+            background_color: utils.get_color_from_hex('#293540')
             background_image: ''
+            padding: 10
             ActionView:
                 ActionPrevious: 
-                    title: 'oi'
+                    title: ''
                     app_icon: ''
                     on_release: 
                         app.root.current = 'home'
                         root.manager.transition.direction: 'right'
-        Label:
-            id: 'title'
-            text: 'Nova leitura'
-            color: .2, .2, .2, 1
-
+                    canvas.before:
+                        Color:
+                            rgba: utils.get_color_from_hex('#EEBECF')
         BoxLayout:
             orientation: 'horizontal'
-            padding: 16
-            spacing: 12
-
             BoxLayout:
                 orientation: 'vertical'
-                spacing: 12
-
+                spacing: 16
+                padding: 16, 6, 16, 30
+                Title:
+                    id: 'title'
+                    text: 'Nova leitura'
                 Label:
+                    id: 'legend_reading'
+                    font_family: 'Arial'
+                    text: 'A partir de uma imagem com conteúdo textual, o tsi.py irá realizar a leitura e retornar o que encontrou!'
+                    text_size: self.size
+                    font_size: 16
+                    color: (51/255, 51/255, 51/255, 1)
+                LabelForm:
                     id: ''
                     text: 'Selecione o formato do arquivo:'
-                    color: .2, .2, .2, 1
                 BoxLayout:
                     orientation: 'horizontal'
                     spacing: 12
-                    BtnPrimary:
+                    padding: 4
+                    BtnSecondary:
                         text: 'Imagem'
-                        font_size: 22
-                        size_hint: (1, 1.5)
-                    BtnPrimary:
+                        size: 265, 48
+                        size_hint: 1, None
+                    BtnSecondary:
                         text: 'Vídeo'
-                        font_size: 22
-                        size_hint: (1, 1.5)
-                Label: 
+                        size: 265, 48
+                        size_hint: 1, None
+                LabelForm: 
                     id: ''
-                    text: 'O que deseja fazer?'
-                    color: (.2, .2, .2, 1)
-                    
+                    text: 'Como deseja trazer o arquivo?'
+
                 BoxLayout:
                     orientation: 'horizontal'
                     spacing: 12
-
-                    BtnPrimary:
+                    padding: 4
+                    BtnSecondary:
                         text: 'Upload'
-                        font_size: 22
-                        size_hint: (1, 1.5)
-                    BtnPrimary:
+                        size: 265, 48
+                        size_hint: 1, None
+                    BtnSecondary:
                         text: 'Link'
-                        font_size: 22
-                        size_hint: (1, 1.5)
+                        size: 265, 48
+                        size_hint: 1, None
                 BtnPrimary: 
                     text: 'Realizar leitura'
                     font_size: 24
-                    size_hint: (1, 2)
+                    size: 436, 72
+                    size_hint: 1, None
                 BoxLayout:
                     orientation: 'horizontal'
                     spacing: 12
-
-                    BtnPrimary:
+                    BtnSecondary:
                         text: 'Copiar texto'
-                        font_size: 22
-                        size_hint: (1, 1.5)
-                    BtnPrimary:
-                        text: 'Salvar como pdf'
-                        font_size: 22
-                        size_hint: (1, 1.5)
-
+                        size: 265, 48
+                        size_hint: 1, None
+                    BtnSecondary:
+                        text: 'Download pdf'
+                        size: 265, 48
+                        size_hint: 1, None
             BoxLayout:
                 orientation: 'vertical'
                 spacing: 12
-
+                padding: 16, 20, 16, 20
+                canvas:
+                    Color: 
+                        rgba: utils.get_color_from_hex('#3B4A58')
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
                 Image:
                     source: './img/background.jpg'
                     size: self.texture_size
-                Label:
-                    id: 'result'
-                    color: (.2, .2, .2, 1)
-                    background_color: (0.89, 0.89, 0.89, 0.89)
-
+                BoxLayout:
+                    canvas:
+                        Color: 
+                            rgba: utils.get_color_from_hex('#E3E3E3')
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    Label: 
+                        id: 'result'
+                        text: 'a'
 <BtnPrimary@Button>:
     font_family: 'Arial'
     color: (.2, .2, .2, 1)
@@ -177,3 +196,32 @@ ScreenManager:
             size: self.size
             pos: self.pos
             radius: [5]
+<BtnSecondary@Button>:
+    font_family: 'Arial'
+    font_size: 22
+    color: (221/255, 109/255, 147/255, 1)
+    bold: True
+    background_color: 0, 0, 0, 0
+    background_normal: ''
+    on_release: 
+        self.background_color = 0, 0, 0, 0
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex('#DD6D93')
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+<Title@Label>:
+    font_family: 'Arial'
+    font_size: 32
+    text_size: self.size
+    halign: 'left'
+    bold: True
+    color: (90/255, 114/255, 133/255, 1)
+<LabelForm@Label>:
+    font_family: 'Arial'
+    font_size: 16
+    text_size: self.size
+    halign: 'left'
+    bold: True
+    color: .2, .2, .2, 1
