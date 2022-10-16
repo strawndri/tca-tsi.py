@@ -139,6 +139,7 @@ ScreenManager:
                         text: 'Upload'
                         size: 265, 48
                         size_hint: 1, None
+                        on_press: root.uploadFile()
                     BtnSecondary:
                         text: 'Link'
                         size: 265, 48
@@ -171,7 +172,7 @@ ScreenManager:
                         pos: self.pos
                 Image:
                     id: 'image'
-                    source: './img/background.jpg'
+                    source: root.filename
                     size: self.texture_size
                 BoxLayout:
                     canvas:
