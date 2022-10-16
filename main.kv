@@ -117,7 +117,7 @@ ScreenManager:
                     text: 'Selecione o formato do arquivo:'
                 BoxLayout:
                     orientation: 'horizontal'
-                    spacing: 12
+                    spacing: 16
                     padding: 4
                     BtnSecondary:
                         text: 'Imagem'
@@ -133,7 +133,7 @@ ScreenManager:
 
                 BoxLayout:
                     orientation: 'horizontal'
-                    spacing: 12
+                    spacing: 16
                     padding: 4
                     BtnSecondary:
                         text: 'Upload'
@@ -150,7 +150,7 @@ ScreenManager:
                     size_hint: 1, None
                 BoxLayout:
                     orientation: 'horizontal'
-                    spacing: 12
+                    spacing: 16
                     BtnSecondary:
                         text: 'Copiar texto'
                         size: 265, 48
@@ -170,6 +170,7 @@ ScreenManager:
                         size: self.size
                         pos: self.pos
                 Image:
+                    id: 'image'
                     source: './img/background.jpg'
                     size: self.texture_size
                 BoxLayout:
