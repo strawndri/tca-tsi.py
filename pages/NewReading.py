@@ -4,9 +4,11 @@ from kivy.uix.screenmanager import Screen
 
 class NewReading(Screen):
 
-    filename = ''
+    filename = './img/background.jpg'
     
     def uploadFile(self):
         new_window = Tk()
         Tk.withdraw(new_window)
-        self.filename = askopenfilename()
+        filename = askopenfilename()
+
+        self.ids.imageToAnalyse.source = filename

@@ -171,9 +171,10 @@ ScreenManager:
                         size: self.size
                         pos: self.pos
                 Image:
-                    id: 'image'
+                    id: imageToAnalyse
                     source: root.filename
-                    size: self.texture_size
+                    size_hint_y: None
+                    height: dp(300)
                 BoxLayout:
                     canvas:
                         Color: 
