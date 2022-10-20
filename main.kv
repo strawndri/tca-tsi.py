@@ -143,13 +143,31 @@ ScreenManager:
                     padding: 4
                     BtnSecondary:
                         text: 'Upload'
-                        size: 265, 48
-                        size_hint: 1, None
+                        size: 200, 48
+                        size_hint: None, None
                         on_press: root.uploadFile()
-                    BtnSecondary:
-                        text: 'Link'
-                        size: 265, 48
-                        size_hint: 1, None
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: 16
+                        TextInput:
+                            id: link
+                            multiline: False
+                            size: 264, 48
+                            font_family: 'Arial'
+                            font_size: 16
+                            color: .2, .2, .2, 1
+                            size_hint: None, None
+                            padding: 10, 16, 10, 8
+                            background_color: 0.89, 0.89, 0.89, 1
+                            background_normal: ''
+                        BtnSecondary:
+                            id: btnLink
+                            text: 'Link'
+                            size: 64, 48
+                            size_hint: None, None
+                            on_press: 
+                                root.getLink()
+
                 BtnPrimary: 
                     text: 'Realizar leitura'
                     font_size: 24
@@ -185,7 +203,7 @@ ScreenManager:
                         Rectangle:
                             size: self.size
                             pos: self.pos
-                    Image:
+                    AsyncImage:
                         id: imageToAnalyse
                         source: root.filename
                         size_hint_y: None

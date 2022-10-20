@@ -18,5 +18,5 @@ class MainApp(App):
     def build(self):
         return kv
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
     MainApp().run()

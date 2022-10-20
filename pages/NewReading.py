@@ -27,6 +27,12 @@ class NewReading(Screen):
 
         self.ids.imageToAnalyse.source = filename
 
+    def getLink(self):
+        path = self.ids.link.text
+        self.ids.imageToAnalyse.source = path
+        self.ids.link.text =  ''
+        
+
     def copy_text(self):
         new_window.clipboard_clear()
         new_window.clipboard_append(self.ids.result.text)
