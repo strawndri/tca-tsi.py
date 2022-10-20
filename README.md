@@ -30,7 +30,10 @@
 ## Como rodar a aplicação :arrow_forward:
 
 ## Tecnologias
-- [X] [PySimpleGUI](https://www.pysimplegui.org/en/latest/)
+- [X] [Kivy](https://kivy.org/)
+- [X] [Tkinter](https://docs.python.org/3/library/tkinter.html)
+- [X] [FPDF](https://pypi.org/project/fpdf/)
+- [X] [PathLib](https://docs.python.org/3/library/pathlib.html)
 
 ## Desenvolvedora
 
