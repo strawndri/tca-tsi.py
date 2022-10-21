@@ -1,8 +1,13 @@
-from tkinter import Tk
 from fpdf import FPDF
 from pathlib import Path
+
+from tkinter import Tk
 from tkinter.filedialog import askopenfilename
+
 from kivy.uix.screenmanager import Screen 
+
+import pytesseract as pt
+import cv2
 
 new_window = Tk()
 Tk.withdraw(new_window)
@@ -24,9 +29,33 @@ class NewReading(Screen):
             for i in NewReading.checks:
                 tops = f'{tops} {i}'
 
-    def uploadFile(self):
-        filename = askopenfilename()
+    def check_radio_button(self):
+        if self.ids.image.active:
+            return 'image'
+        elif self.ids.video.active:
+            return 'video'
+        else:
+            return 'nothing here...'  
 
+    def uploadFile(self):
+
+        type_of_file = self.check_radio_button()
+
+        if type_of_file == 'video':
+            filename = askopenfilename()
+            video = cv2.VideoCapture(filename)
+            success, image = video.read()
+            i = 1
+            while success:
+                cv2.imwrite('./data/image_%d.jpg' % i, image)
+                success, image = video.read()
+                i += 1
+            # filename = cv2.imread('./data/')
+        elif type_of_file == 'image':
+            filename = askopenfilename()
+        else:
+            pass
+        
         self.ids.imageToAnalyse.source = filename
 
     def getLink(self):
