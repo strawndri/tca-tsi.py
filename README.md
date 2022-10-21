@@ -34,6 +34,8 @@
 - [X] [Tkinter](https://docs.python.org/3/library/tkinter.html)
 - [X] [FPDF](https://pypi.org/project/fpdf/)
 - [X] [PathLib](https://docs.python.org/3/library/pathlib.html)
+- [X] [OpenCV-Python](https://pypi.org/project/opencv-python/)
+- [X] [PyTesseract](https://pypi.org/project/pytesseract/)
 
 ## Desenvolvedora
 
