@@ -7,7 +7,7 @@ from tkinter.filedialog import askopenfilename
 from kivy.uix.screenmanager import Screen 
 
 import pytesseract as pt
-pt.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract"
+pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 import cv2
 
 new_window = Tk()
@@ -33,7 +33,9 @@ class NewReading(Screen):
     def read_image(self, image_file):
         image = cv2.imread(image_file)
         text = pt.image_to_string(image)
-        self.ids.result.text = text
+        
+        if text not in self.ids.result.text:
+            self.ids.result.text += text
 
     def check_radio_button(self):
         if self.ids.image.active:
@@ -51,19 +53,23 @@ class NewReading(Screen):
             filename = askopenfilename()
             video = cv2.VideoCapture(filename)
             success, image = video.read()
-            i = 1
+            i = 0
+            success = True
             while success:
-                cv2.imwrite('./data/image_%d.jpg' % i, image)
-                success, image = video.read()
+                print('Read a new frame: ', success)
+                cv2.imwrite("data\\image_%d.jpg" % i, image)
+                self.read_image(f"data\\image_{i}.jpg")
                 i += 1
-            # filename = cv2.imread('./data/')
+                success, image = video.read()
+            filename = 'data\image_0.jpg'
+
         elif type_of_file == 'image':
             filename = askopenfilename()
+            self.read_image(filename)
         else:
             pass
         
         self.ids.imageToAnalyse.source = filename
-        self.read_image(filename)
 
     def getLink(self):
         path = self.ids.link.text
