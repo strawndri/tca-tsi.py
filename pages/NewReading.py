@@ -56,9 +56,19 @@ class NewReading(Screen):
             i = 0
             success = True
             while success:
-                print('Read a new frame: ', success)
                 cv2.imwrite("data\\image_%d.jpg" % i, image)
-                self.read_image(f"data\\image_{i}.jpg")
+
+                if (i > 0):
+                    # OPENCV_METHODS = (
+                    #     ("Chi-Squared", cv2.HISTCMP_CHISQR),
+                    # )
+
+                    list = [f"data\\image_{i-1}.jpg", f"data\\image_{i}.jpg"]
+                    histograms = self.setHistograms(list)
+
+                    print(histograms)
+                    
+                # self.read_image(f"data\\image_{i}.jpg")
                 i += 1
                 success, image = video.read()
             filename = 'data\image_0.jpg'
@@ -70,6 +80,19 @@ class NewReading(Screen):
             pass
         
         self.ids.imageToAnalyse.source = filename
+
+    def setHistograms(*images):
+
+        for i in range(0, 2):
+            histograms = []
+            current_img = cv2.imread(images[1][i])
+            current_img = cv2.cvtColor(current_img, cv2.COLOR_BGR2RGB)
+
+            hist = cv2.calcHist([current_img], [0, 1], None, [8, 8], [0, 256, 0, 256])
+            hist = cv2.normalize(hist, hist).flatten()
+            histograms.append(hist)
+
+        return histograms
 
     def getLink(self):
         path = self.ids.link.text
