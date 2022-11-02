@@ -59,14 +59,11 @@ class NewReading(Screen):
                 cv2.imwrite("data\\image_%d.jpg" % i, image)
 
                 if (i > 0):
-                    # OPENCV_METHODS = (
-                    #     ("Chi-Squared", cv2.HISTCMP_CHISQR),
-                    # )
 
                     list = [f"data\\image_{i-1}.jpg", f"data\\image_{i}.jpg"]
-                    histograms = self.setHistograms(list)
+                    result = self.setHistograms(list)
 
-                    print(histograms)
+                    print(result)
                     
                 # self.read_image(f"data\\image_{i}.jpg")
                 i += 1
@@ -82,17 +79,18 @@ class NewReading(Screen):
         self.ids.imageToAnalyse.source = filename
 
     def setHistograms(*images):
+        histograms = []
 
         for i in range(0, 2):
-            histograms = []
             current_img = cv2.imread(images[1][i])
             current_img = cv2.cvtColor(current_img, cv2.COLOR_BGR2RGB)
-
             hist = cv2.calcHist([current_img], [0, 1], None, [8, 8], [0, 256, 0, 256])
             hist = cv2.normalize(hist, hist).flatten()
             histograms.append(hist)
 
-        return histograms
+        result = cv2.compareHist(histograms[0], histograms[1], cv2.HISTCMP_CHISQR)
+
+        return result
 
     def getLink(self):
         path = self.ids.link.text
