@@ -4,6 +4,8 @@ from pathlib import Path
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
+import os
+
 from kivy.uix.screenmanager import Screen 
 
 import pytesseract as pt
@@ -50,25 +52,24 @@ class NewReading(Screen):
         type_of_file = self.check_radio_button()
 
         if type_of_file == 'video':
+
             filename = askopenfilename()
             video = cv2.VideoCapture(filename)
             success, image = video.read()
             i = 0
             success = True
+            images = []
+
             while success:
                 cv2.imwrite("data\\image_%d.jpg" % i, image)
-
                 if (i > 0):
-
-                    list = [f"data\\image_{i-1}.jpg", f"data\\image_{i}.jpg"]
-                    result = self.setHistograms(list)
-
-                    print(result)
-                    
-                # self.read_image(f"data\\image_{i}.jpg")
+                    self.compareHistograms(i)
                 i += 1
                 success, image = video.read()
-            filename = 'data\image_0.jpg'
+            
+            for i in images:
+                self.read_image(f"data\\image_{i}.jpg")
+            filename = f"data\\image_{0}.jpg"
 
         elif type_of_file == 'image':
             filename = askopenfilename()
@@ -78,20 +79,29 @@ class NewReading(Screen):
         
         self.ids.imageToAnalyse.source = filename
 
-    def setHistograms(*images):
-        histograms = []
+    def createHistogram(self, image):
+        img = cv2.imread(image)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        hist = cv2.calcHist([img], [0, 1], None, [8, 8], [0, 256, 0, 256])
+        hist = cv2.normalize(hist, hist).flatten()
 
-        for i in range(0, 2):
-            current_img = cv2.imread(images[1][i])
-            current_img = cv2.cvtColor(current_img, cv2.COLOR_BGR2RGB)
-            hist = cv2.calcHist([current_img], [0, 1], None, [8, 8], [0, 256, 0, 256])
-            hist = cv2.normalize(hist, hist).flatten()
-            histograms.append(hist)
+        return hist
 
-        result = cv2.compareHist(histograms[0], histograms[1], cv2.HISTCMP_CHISQR)
+    def compareHistograms(self, position):
+        hist2 = self.createHistogram(f"data\\image_{position}.jpg")
 
-        return result
+        for i in range(0, position):
+            
+            try:
+                hist1 = self.createHistogram(f"data\\image_{i}.jpg")
+                result = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
 
+                if (result <= 3.0e-03):
+                    os.remove(f"data\\image_{position}.jpg")
+                    break
+            except:
+                i += 1
+            
     def getLink(self):
         path = self.ids.link.text
         self.ids.imageToAnalyse.source = path
