@@ -4,9 +4,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen 
 from kivy.core.window import Window
 
-import pages.Home as Home
-import pages.Guide as Guide
-import pages.NewReading as NewReading
+import screens.Home as Home
+import screens.Guide as Guide
+import screens.NewReading as NewReading
 
 class WindowManager(ScreenManager):
     pass

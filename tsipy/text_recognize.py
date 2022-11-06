@@ -1,0 +1,60 @@
+import pytesseract as pt
+pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+import cv2
+
+import os
+
+images = [0]
+
+def compareHistograms(position):
+    hist2 = createHistogram(f"data\\image_{position}.jpg")
+    for i in range(0, position):
+        
+        try:
+            hist1 = createHistogram(f"data\\image_{i}.jpg")
+            result = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
+
+            if (result <= 3.0e-03):
+                os.remove(f"data\\image_{position}.jpg")
+                break
+        except:
+            i += 1
+
+def createHistogram(image):
+    img = cv2.imread(image)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    hist = cv2.calcHist([img], [0, 1], None, [8, 8], [0, 256, 0, 256])
+    hist = cv2.normalize(hist, hist).flatten()
+
+    return hist
+
+def read_image(image_file):
+    image = cv2.imread(image_file)
+    text = pt.image_to_string(image)
+    return text  
+
+def read_video(filename):
+    video = cv2.VideoCapture(filename)
+    success, image = video.read()
+    i = 0
+    success = True
+    while success:
+        cv2.imwrite("data\\image_%d.jpg" % i, image)
+        if (i > 0):
+            compareHistograms(i)
+        i += 1
+        success, image = video.read() 
+
+    text = ''
+
+    os.chdir('data')
+    for file in os.listdir():
+        if os.path.isfile(file):
+            text += read_image(file) 
+
+    return text
+    
+
+
+
+    
