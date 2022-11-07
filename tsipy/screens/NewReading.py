@@ -1,3 +1,4 @@
+import shutil
 from fpdf import FPDF
 from pathlib import Path
 

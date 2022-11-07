@@ -14,7 +14,7 @@ def compareHistograms(position):
             hist1 = createHistogram(f"data\\image_{i}.jpg")
             result = cv2.compareHist(hist1, hist2, cv2.HISTCMP_CHISQR)
 
-            if (result <= 3.0e-03):
+            if (result <= 10.0e-03):
                 os.remove(f"data\\image_{position}.jpg")
                 break
         except:
@@ -45,13 +45,20 @@ def read_video(filename):
         i += 1
         success, image = video.read() 
 
+    texts = []
     text = ''
 
     os.chdir('data')
     for file in os.listdir():
         if os.path.isfile(file):
-            text += read_image(file) 
-
+            text_list = read_image(file)
+            text_list = text_list.split('\n')
+            for phrase in text_list:
+                if phrase not in texts:
+                    texts.append(phrase)
+    for phrase in texts:
+        text += f'\n{phrase}'
+    
     return text
     
 
