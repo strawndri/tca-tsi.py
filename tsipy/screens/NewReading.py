@@ -56,7 +56,7 @@ class NewReading(Screen):
             case 'image':
                 text = tr.read_image(path, True)
                 if text not in self.ids.result.text:
-                    self.ids.result.text += text
+                    self.ids.result.text = text
             case other:
                 pass
 
@@ -79,14 +79,14 @@ class NewReading(Screen):
                 text =tr.read_video(filename)
 
                 if text not in self.ids.result.text:
-                    self.ids.result.text += text
-                filename = f"data\\image_{0}.jpg"
+                    self.ids.result.text = text
+                filename = f"data\image_{0}.jpg"
 
             case 'image':
                 filename = askopenfilename()
                 text = tr.read_image(filename)
                 if text not in self.ids.result.text:
-                    self.ids.result.text += text
+                    self.ids.result.text = text
             case other:
                 pass
         

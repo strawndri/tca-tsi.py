@@ -31,14 +31,25 @@ def createHistogram(image):
     return hist
 
 def read_image(image_file, is_url=False):
+    # custom_config = r'-c tessedit_char_whitelist=0123456789 --psm 6'
+    min_conf = 10
+    text = ''
+
     if is_url:
         resp = requests.get(image_file, stream=True).raw
         image = np.asarray(bytearray(resp.read()),dtype="uint8")
         image = cv2.imdecode(image,cv2.IMREAD_COLOR)
     else:
         image = cv2.imread(image_file)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+    result = pt.image_to_data(image, output_type=pt.Output.DICT,lang='por')
+    
+    for i in range(0, len(result['text'])): 
+        confidence = int(result['conf'][i]) 
+        if confidence >= min_conf: 
+            text += f'{result["text"][i]} '  
 
-    text = pt.image_to_string(image, lang='por')
     return text  
 
 def read_video(filename):
