@@ -38,7 +38,7 @@ def read_image(image_file, is_url=False):
     else:
         image = cv2.imread(image_file)
 
-    text = pt.image_to_string(image)
+    text = pt.image_to_string(image, lang='por')
     return text  
 
 def read_video(filename):
