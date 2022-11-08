@@ -48,6 +48,18 @@ class NewReading(Screen):
         self.ids.imageToAnalyse.source = path
         self.ids.link.text =  ''
 
+        type_of_file = self.check_radio_button()
+
+        match (type_of_file):
+            case 'video':
+                pass
+            case 'image':
+                text = tr.read_image(path, True)
+                if text not in self.ids.result.text:
+                    self.ids.result.text += text
+            case other:
+                pass
+
     def string_to_pdf(self):
         pdf = FPDF()
         download_path = str(Path.home()/"Downloads")

@@ -3,6 +3,8 @@ pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 import cv2
 
 import os
+import numpy as np
+import requests
 
 images = [0]
 
@@ -28,8 +30,14 @@ def createHistogram(image):
 
     return hist
 
-def read_image(image_file):
-    image = cv2.imread(image_file)
+def read_image(image_file, is_url=False):
+    if is_url:
+        resp = requests.get(image_file, stream=True).raw
+        image = np.asarray(bytearray(resp.read()),dtype="uint8")
+        image = cv2.imdecode(image,cv2.IMREAD_COLOR)
+    else:
+        image = cv2.imread(image_file)
+
     text = pt.image_to_string(image)
     return text  
 
