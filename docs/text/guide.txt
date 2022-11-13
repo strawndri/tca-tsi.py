@@ -1,0 +1,27 @@
+1 Guia Tsi.py
+
+6 O Tsi.py é um programa que trabalha com visão computacional. Por meio dele, é possível realizar leituras de imagens e vídeos com conteúdo textual.
+6 O seu funcionamento tem como base o uso de machine learning (aprendizado de máquina). Através de vários testes prévios, o computador passa a ter capacidade de interpretarcaracteres presentes em arquivos de imagem ou vídeo.
+6 Mas afinal, como posso coletar textos através de imagens? Abaixo há uma explicação de como utilizar o Tsi.py da melhor maneira possível:
+
+2 Escolher o formato de arquivo:
+6 Antes de trazer o arquivo para leitura, precisamos determinar qual é o seu tipo. Para isso, basta selecionar um dos radio buttons presentes: Imagem e Vídeo.
+
+3 Importar o arquivo
+   
+4 Upload
+6 Ao clicar em upload, abrirá uma janela para seleção do arquivo desejado. Navegue pelo explorador, encontre o arquivo e clique em "abrir".
+
+4 Link
+6 Você também tem a possibilidade de copiar o endereço da imagem ou do vídeo e, logo em seguida, colá-la no campo para isso. Para a leitura, clique no botão "link".
+
+4 Realizar leitura
+6 A imagem ou o vídeo que você trouxe já foi armazenado pelo sistema. Para de fato realizar a leitura, é preciso clicar no botão referente a isso.
+
+4 Obtenção do texto
+
+5 Copiar
+6 Ao clicar em copiar, o texto obtido será armazenado na área de transferência do seu computador.
+
+5 Download
+6 Outra maneira de obter o texto é fazendo download dele. Este processo gera um arquivo em formato PDF, o qual será armazenado na pasta de Downloads do seu computador.
