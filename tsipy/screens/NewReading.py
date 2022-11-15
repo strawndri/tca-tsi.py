@@ -46,7 +46,6 @@ class NewReading(Screen):
     def getLink(self):
         path = self.ids.link.text
         self.ids.imageToAnalyse.source = path
-        self.ids.link.text =  ''
 
         type_of_file = self.check_radio_button()
 

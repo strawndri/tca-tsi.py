@@ -39,7 +39,8 @@ ScreenManager:
                 font_size: 32
                 size: 436, 72
                 size_hint: None, None
-                on_release: app.root.current = 'guide'
+                on_release: 
+                    app.root.current = 'guide'
             BtnPrimary:
                 text: 'Realizar nova leitura'
                 font_size: 32
@@ -49,11 +50,11 @@ ScreenManager:
 <Guide>:
     name: 'guide'
     BoxLayout:
-        id: 'boxLayout_guide'
+        id: boxLayout_guide
         orientation: 'vertical'
         canvas:
             Color: 
-                rgb:  utils.get_color_from_hex('#F9F9F9')
+                rgb:  utils.get_color_from_hex('#f9f9f9')
             Rectangle:
                 size: self.size
                 pos: self.pos
@@ -72,6 +73,15 @@ ScreenManager:
                     canvas.before:
                         Color:
                             rgba: utils.get_color_from_hex('#EEBECF')
+        ScrollView:
+            id: scroll_view
+            do_scroll_x: False
+            do_scroll_y: True
+            GridLayout:
+                id: grid_layout
+                rows: 18
+                size_hint_y: None
+                height: 1048
 
 <NewReading>:
     name: 'newReading'
