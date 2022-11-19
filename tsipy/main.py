@@ -12,8 +12,10 @@ class WindowManager(ScreenManager):
     pass
 
 Window.size = (1200, 600)
-kv = Builder.load_file('main.kv')
+Window.top = Window.size[1]/8
+Window.left -= Window.size[0]/6
 
+kv = Builder.load_file('main.kv')
 class MainApp(App):
     def build(self):
         return kv
