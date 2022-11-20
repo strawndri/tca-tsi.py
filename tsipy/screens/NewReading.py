@@ -5,6 +5,10 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
 from kivy.uix.screenmanager import Screen 
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 
 import text_recognize as tr
 
@@ -95,8 +99,42 @@ class NewReading(Screen):
             self.show_popup('error')
 
     def show_popup(self, type):
+        box = BoxLayout(orientation = 'vertical', padding = (48))
         match type:
             case 'error':
-                print('Erro!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                title = 'Erro inesperado'
+                txt = 'Não foi possível realizar a leitura, tente novamente!' 
             case 'success':
-                print('Arquivo recebido com sucesso!')
+                title = 'Arquivo recebido'
+                txt = 'O arquivo foi recebido com sucesso. Clique em "Realizar Leitura" e aguarde um instante até que o processamento seja finalizada.'
+
+        box.add_widget(Label(
+            text = txt, 
+            font_family = 'Arial', 
+            font_size = 18, 
+            text_size = (400, 200),
+            halign = 'center',
+            valign = 'center',
+            color = (249/255, 249/255, 249/255, 1)))
+
+        popup = Popup(
+            title = title, 
+            content = box, 
+            auto_dismiss = True,
+            title_size = 18,
+            title_align = 'center',
+            size_hint = (None, None),
+            size = (600, 400),
+            background = 'docs/img/background.png')
+
+        box.add_widget(Button(
+            text = 'Fechar', 
+            on_press = popup.dismiss,
+            font_size = 24,
+            color = (.2, .2, .2, 1),
+            background_color = (178/255, 192/255, 205/255, 1),
+            background_normal = '',
+            size = (500, 72),
+            size_hint = (None, None)
+            ))
+        popup.open()
