@@ -14,7 +14,7 @@ Tk.withdraw(new_window)
 class NewReading(Screen):
 
     checks = []
-    filename = 'docs/img/img-icon.png'
+    path = 'docs/img/img-icon.png'
     video_format = ['.mp4', '.gif', '.mkv', '.webm', '.avi', '.mov']
     image_format = ['.jpg', '.jpeg', '.png']
     is_link = False
@@ -47,20 +47,10 @@ class NewReading(Screen):
         new_window.destroy()
 
     def getLink(self):
-        path = self.ids.link.text
-        self.ids.imageToAnalyse.source = path
-
+        self.path = self.ids.link.text
         type_of_file = self.check_radio_button()
-
-        match (type_of_file):
-            case 'video':
-                pass
-            case 'image':
-                text = tr.read_image(path, True)
-                if text not in self.ids.result.text:
-                    self.ids.result.text = text
-            case other:
-                pass
+        self.check_file(self.path, type_of_file)
+        self.is_link = True
 
     def string_to_pdf(self):
         pdf = FPDF()
@@ -73,8 +63,8 @@ class NewReading(Screen):
 
     def upload_file(self):
         type_of_file = self.check_radio_button()
-        self.filename = askopenfilename()
-        self.check_file(self.filename, type_of_file)
+        self.path = askopenfilename()
+        self.check_file(self.path, type_of_file)
 
     def check_file(self, filename, format):
         if (format == 'video'):
@@ -93,11 +83,11 @@ class NewReading(Screen):
     def show_result(self):
         if (self.is_the_correct_format):
             if (format == 'video'):
-                text = tr.read_video(self.filename)
+                text = tr.read_video(self.path)
                 self.ids.imageToAnalyse.source = f"data\image_{0}.jpg"
             else:
-                text = tr.read_image(self.filename, self.is_link)
-                self.ids.imageToAnalyse.source = self.filename
+                text = tr.read_image(self.path, self.is_link)
+                self.ids.imageToAnalyse.source = self.path
 
             if text not in self.ids.result.text:
                 self.ids.result.text = text
