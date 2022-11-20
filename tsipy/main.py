@@ -12,6 +12,8 @@ class WindowManager(ScreenManager):
     pass
 
 Window.size = (1200, 600)
+
+# centralização da janela na tela
 Window.top = Window.size[1]/8
 Window.left -= Window.size[0]/6
 

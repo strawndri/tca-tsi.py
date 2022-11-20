@@ -1,4 +1,3 @@
-import shutil
 from fpdf import FPDF
 from pathlib import Path
 
@@ -16,6 +15,8 @@ class NewReading(Screen):
 
     checks = []
     filename = 'docs/img/img-icon.png'
+    video_format = ['.mp4', '.gif', '.mkv', '.webm', '.avi', '.mov']
+    image_format = ['.jpg', '.jpeg', '.png']
 
     def checkbox_click(self, instance, value, topping):
         if value == True:
@@ -71,22 +72,39 @@ class NewReading(Screen):
     def upload_file(self):
 
         type_of_file = self.check_radio_button()
+        try:
+            filename = askopenfilename()
+        except:
+            self.show_popup_error()
+        else:
+            match (type_of_file):
+                case 'video':
+                    if (self.check_file(filename, self.video_format)):
+                        text = tr.read_video(filename)
+                        self.show_result(text)
+                        self.ids.imageToAnalyse.source = f"data\image_{0}.jpg"
+                    else:
+                        self.show_popup_error()
+                case 'image':
+                    if (self.check_file(filename, self.image_format)):
+                        text = tr.read_image(filename)
+                        self.show_result(text)
+                        self.ids.imageToAnalyse.source = filename
+                    else:
+                        self.show_popup_error()
+            
 
-        match (type_of_file):
-            case 'video':
-                filename = askopenfilename()
-                text =tr.read_video(filename)
+    def check_file(self, filename, list_format):
+        is_the_correct_format = False
+        for i in list_format:
+            if filename.endswith(i):
+                is_the_correct_format = True
+                break
+        return is_the_correct_format
 
-                if text not in self.ids.result.text:
-                    self.ids.result.text = text
-                filename = f"data\image_{0}.jpg"
+    def show_result(self, text):
+        if text not in self.ids.result.text:
+            self.ids.result.text = text
 
-            case 'image':
-                filename = askopenfilename()
-                text = tr.read_image(filename)
-                if text not in self.ids.result.text:
-                    self.ids.result.text = text
-            case other:
-                pass
-        
-        self.ids.imageToAnalyse.source = filename
+    def show_popup_error(self):
+        print('Erro!!!!!!!!!!!!!!!!!!!!!!!!!!')
