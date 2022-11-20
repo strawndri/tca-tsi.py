@@ -17,6 +17,8 @@ class NewReading(Screen):
     filename = 'docs/img/img-icon.png'
     video_format = ['.mp4', '.gif', '.mkv', '.webm', '.avi', '.mov']
     image_format = ['.jpg', '.jpeg', '.png']
+    is_link = False
+    is_the_correct_format = False
 
     def checkbox_click(self, instance, value, topping):
         if value == True:
@@ -70,41 +72,41 @@ class NewReading(Screen):
         pdf.output(path, 'F')
 
     def upload_file(self):
-
         type_of_file = self.check_radio_button()
-        try:
-            filename = askopenfilename()
-        except:
-            self.show_popup_error()
-        else:
-            match (type_of_file):
-                case 'video':
-                    if (self.check_file(filename, self.video_format)):
-                        text = tr.read_video(filename)
-                        self.show_result(text)
-                        self.ids.imageToAnalyse.source = f"data\image_{0}.jpg"
-                    else:
-                        self.show_popup_error()
-                case 'image':
-                    if (self.check_file(filename, self.image_format)):
-                        text = tr.read_image(filename)
-                        self.show_result(text)
-                        self.ids.imageToAnalyse.source = filename
-                    else:
-                        self.show_popup_error()
-            
+        self.filename = askopenfilename()
+        self.check_file(self.filename, type_of_file)
 
-    def check_file(self, filename, list_format):
-        is_the_correct_format = False
+    def check_file(self, filename, format):
+        if (format == 'video'):
+            list_format = self.video_format
+        else:
+            list_format = self.image_format
+
         for i in list_format:
             if filename.endswith(i):
-                is_the_correct_format = True
+                self.is_the_correct_format = True
+                self.show_popup('success')
                 break
-        return is_the_correct_format
+        if (self.is_the_correct_format == False):
+            self.show_popup('error')
 
-    def show_result(self, text):
-        if text not in self.ids.result.text:
-            self.ids.result.text = text
+    def show_result(self):
+        if (self.is_the_correct_format):
+            if (format == 'video'):
+                text = tr.read_video(self.filename)
+                self.ids.imageToAnalyse.source = f"data\image_{0}.jpg"
+            else:
+                text = tr.read_image(self.filename, self.is_link)
+                self.ids.imageToAnalyse.source = self.filename
 
-    def show_popup_error(self):
-        print('Erro!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            if text not in self.ids.result.text:
+                self.ids.result.text = text
+        else:
+            self.show_popup('error')
+
+    def show_popup(self, type):
+        match type:
+            case 'error':
+                print('Erro!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            case 'success':
+                print('Arquivo recebido com sucesso!')
