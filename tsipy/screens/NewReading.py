@@ -53,8 +53,9 @@ class NewReading(Screen):
     def getLink(self):
         self.path = self.ids.link.text
         type_of_file = self.check_radio_button()
-        self.check_file(self.path, type_of_file)
         self.is_link = True
+        self.ids.link.text = ''
+        self.check_file(self.path, type_of_file)
 
     def string_to_pdf(self):
         pdf = FPDF()
@@ -71,18 +72,22 @@ class NewReading(Screen):
         self.check_file(self.path, type_of_file)
 
     def check_file(self, filename, format):
+
         if (format == 'video'):
             list_format = self.video_format
-        else:
+        elif (format == 'image'):
             list_format = self.image_format
 
-        for i in list_format:
-            if filename.endswith(i):
-                self.is_the_correct_format = True
-                self.show_popup('success')
-                break
-        if (self.is_the_correct_format == False):
-            self.show_popup('error')
+        if (format == 'video' and self.is_link):
+            self.show_popup('invalid')
+        else:
+            for i in list_format:
+                if filename.endswith(i):
+                    self.is_the_correct_format = True
+                    self.show_popup('success')
+                    break
+            if (self.is_the_correct_format == False):
+                self.show_popup('error')
 
     def show_result(self):
         if (self.is_the_correct_format):
@@ -107,6 +112,9 @@ class NewReading(Screen):
             case 'success':
                 title = 'Arquivo recebido'
                 txt = 'O arquivo foi recebido com sucesso. Clique em "Realizar Leitura" e aguarde um instante até que o processamento seja finalizada.'
+            case 'invalid':
+                title = 'Formato inválido'
+                txt = 'Tsi.py ainda não realiza leitura de vídeos coletados por url. Você será avisado quando a funcionalidade for inserida.'
 
         box.add_widget(Label(
             text = txt, 

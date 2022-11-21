@@ -52,7 +52,7 @@ def read_image(image_file, is_url=False):
 
     return text  
 
-def read_video(filename):
+def read_video(filename, is_url=False):
     video = cv2.VideoCapture(filename)
     success, image = video.read()
     i = 0
