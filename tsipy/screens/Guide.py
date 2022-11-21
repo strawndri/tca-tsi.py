@@ -13,6 +13,8 @@ class Guide(Screen):
 
         grid_layout = self.ids.grid_layout
         config = []
+
+        # criação de linhas conforme o arquivo .txt
         with open('docs/text/guide.txt', encoding='utf8') as file:
             for line in file:
                 match (line[0]):

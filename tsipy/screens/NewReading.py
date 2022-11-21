@@ -25,7 +25,54 @@ class NewReading(Screen):
     is_link = False
     is_the_correct_format = False
 
-    def checkbox_click(self, instance, value, topping):
+    # verifica se o arquivo selecionado foi corretamente escolhido (formato)
+    def check_file(self, filename, format):
+
+        if (format == 'video'):
+            list_format = self.video_format
+        elif (format == 'image'):
+            list_format = self.image_format
+
+        if (format == 'video' and self.is_link):
+            self.show_popup('invalid')
+        elif (format == None):
+            self.show_popup('empty')
+        else:
+            for i in list_format:
+                if filename.endswith(i):
+                    self.is_the_correct_format = True
+                    self.show_popup('success')
+                    break
+            if (self.is_the_correct_format == False):
+                self.show_popup('error')
+    
+    # verifica o valor selecionado pelo usuário
+    def check_radio_button(self):
+        if self.ids.image.active:
+            return 'image'
+        elif self.ids.video.active:
+            return 'video'
+        else:
+            return None
+
+    # realiza uma cópia do do texto p/ a área de transfência
+    def copy_text(self):
+        new_window.clipboard_clear()
+        new_window.clipboard_append(self.ids.result.text)
+        new_window.update()
+        new_window.destroy()
+        self.show_popup('copy')
+
+    # recebe o caminho adicionado pelo usuário no input
+    def getLink(self):
+        self.path = self.ids.link.text
+        self.type_of_file = self.check_radio_button()
+        self.is_link = True
+        self.ids.link.text = ''
+        self.check_file(self.path, self.type_of_file)
+
+    # recebe o valor conforme o click do usuário nos radiobuttons
+    def radio_button_click(self, instance, value, topping):
         if value == True:
             NewReading.checks.append(topping)
             tops = ''
@@ -37,59 +84,20 @@ class NewReading(Screen):
             for i in NewReading.checks:
                 tops = f'{tops} {i}'
 
-    def check_radio_button(self):
-        if self.ids.image.active:
-            return 'image'
-        elif self.ids.video.active:
-            return 'video'
-        else:
-            return 'nothing here...'  
-
-    def copy_text(self):
-        new_window.clipboard_clear()
-        new_window.clipboard_append(self.ids.result.text)
-        new_window.update()
-        new_window.destroy()
-
-    def getLink(self):
-        self.path = self.ids.link.text
-        self.type_of_file = self.check_radio_button()
-        self.is_link = True
-        self.ids.link.text = ''
-        self.check_file(self.path, self.type_of_file)
-
+    # coleta o texto que foi processado e o transforma em um arquivo de formato .pdf
     def string_to_pdf(self):
         pdf = FPDF()
         download_path = str(Path.home()/"Downloads")
-        path = download_path + '/test.pdf'
+        path = download_path + '/novo_arquivo.pdf'
         pdf.add_page()
-        pdf.set_font('Arial', 'B', 12)
-        pdf.cell(40, 10, self.ids.result.text)
+        pdf.set_font('Arial', '', 12)
+        text = self.ids.result.text
+        text = text.encode('latin-1', 'ignore').decode('latin-1')
+        pdf.multi_cell(0, 5, txt = text)
         pdf.output(path, 'F')
+        self.show_popup('download') # mostra o popup de que o download foi concluído
 
-    def upload_file(self):
-        self.type_of_file = self.check_radio_button()
-        self.path = askopenfilename()
-        self.check_file(self.path, self.type_of_file)
-
-    def check_file(self, filename, format):
-
-        if (format == 'video'):
-            list_format = self.video_format
-        elif (format == 'image'):
-            list_format = self.image_format
-
-        if (format == 'video' and self.is_link):
-            self.show_popup('invalid')
-        else:
-            for i in list_format:
-                if filename.endswith(i):
-                    self.is_the_correct_format = True
-                    self.show_popup('success')
-                    break
-            if (self.is_the_correct_format == False):
-                self.show_popup('error')
-
+    # apresenta o resultado em tela
     def show_result(self):
         if (self.is_the_correct_format):
             if (self.type_of_file == 'video'):
@@ -106,18 +114,28 @@ class NewReading(Screen):
         else:
             self.show_popup('error')
 
+    # apresenta avisos conforme a ação do usuário
     def show_popup(self, type):
         box = BoxLayout(orientation = 'vertical', padding = (48))
         match type:
             case 'error':
                 title = 'Erro inesperado'
-                txt = 'Não foi possível realizar a leitura, tente novamente!' 
+                txt = 'Não foi possível dar continuidade à leitura, tente novamente!' 
             case 'success':
                 title = 'Arquivo recebido'
-                txt = 'O arquivo foi recebido com sucesso. Clique em "Realizar Leitura" e aguarde um instante até que o processamento seja finalizada.'
+                txt = 'O arquivo foi recebido com sucesso. Clique em "Realizar Leitura" e aguarde um instante até que o processamento seja finalizado.'
             case 'invalid':
                 title = 'Formato inválido'
                 txt = 'Tsi.py ainda não realiza leitura de vídeos coletados por url. Você será avisado quando a funcionalidade for inserida.'
+            case 'empty':
+                title = 'Erro no formato do arquivo'
+                txt = 'Selecione "Imagem" ou "Vídeo" para continuar a leitura.'
+            case 'download':
+                title = 'Download concluído'
+                txt = 'O download do texto foi finalizado. Verifique a pasta "Downloads" do seu dispositivo.'
+            case 'copy':
+                title = 'Texto copiado'
+                txt = 'O texto lido foi copiado, com sucesso, para a área de transferência. Pressione o botão direito do mouse e clique em colar ou pressione CTRL+V para apresentar o seu texto.'
 
         box.add_widget(Label(
             text = txt, 
@@ -148,4 +166,11 @@ class NewReading(Screen):
             size = (500, 72),
             size_hint = (None, None)
             ))
+
         popup.open()
+
+    # faz upload do arquivo
+    def upload_file(self):
+        self.type_of_file = self.check_radio_button()
+        self.path = askopenfilename()
+        self.check_file(self.path, self.type_of_file)
