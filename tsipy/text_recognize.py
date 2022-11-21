@@ -52,7 +52,7 @@ def read_image(image_file, is_url=False):
 
     return text  
 
-def read_video(filename, is_url=False):
+def read_video(filename):
     video = cv2.VideoCapture(filename)
     success, image = video.read()
     i = 0
@@ -76,7 +76,7 @@ def read_video(filename, is_url=False):
                 if phrase not in texts:
                     texts.append(phrase)
     for phrase in texts:
-        text += f'\n{phrase}'
+        text += f'{phrase}\n\n'
     
     return text
     

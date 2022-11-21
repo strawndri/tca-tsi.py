@@ -21,6 +21,7 @@ class NewReading(Screen):
     path = 'docs/img/img-icon.png'
     video_format = ['.mp4', '.gif', '.mkv', '.webm', '.avi', '.mov']
     image_format = ['.jpg', '.jpeg', '.png']
+    type_of_file = ''
     is_link = False
     is_the_correct_format = False
 
@@ -52,10 +53,10 @@ class NewReading(Screen):
 
     def getLink(self):
         self.path = self.ids.link.text
-        type_of_file = self.check_radio_button()
+        self.type_of_file = self.check_radio_button()
         self.is_link = True
         self.ids.link.text = ''
-        self.check_file(self.path, type_of_file)
+        self.check_file(self.path, self.type_of_file)
 
     def string_to_pdf(self):
         pdf = FPDF()
@@ -67,9 +68,9 @@ class NewReading(Screen):
         pdf.output(path, 'F')
 
     def upload_file(self):
-        type_of_file = self.check_radio_button()
+        self.type_of_file = self.check_radio_button()
         self.path = askopenfilename()
-        self.check_file(self.path, type_of_file)
+        self.check_file(self.path, self.type_of_file)
 
     def check_file(self, filename, format):
 
@@ -91,12 +92,14 @@ class NewReading(Screen):
 
     def show_result(self):
         if (self.is_the_correct_format):
-            if (format == 'video'):
+            if (self.type_of_file == 'video'):
+                print(self.path)
                 text = tr.read_video(self.path)
-                self.ids.imageToAnalyse.source = f"data\image_{0}.jpg"
+                self.ids.imageToAnalyse.source = 'docs/img/img-icon.png'
             else:
                 text = tr.read_image(self.path, self.is_link)
                 self.ids.imageToAnalyse.source = self.path
+                self.is_link = False
 
             if text not in self.ids.result.text:
                 self.ids.result.text = text
