@@ -61,12 +61,29 @@ Para o funcionamento do programa, você precisará fazer o download do Pytessera
 - [Repositório do Pytesseract para download](https://github.com/tesseract-ocr/tesseract/wiki/Downloads)
 
 Depois disso, você precisará executar em seu terminal os seguintes comandos:
-```pip install kivy```
-```pip install fpdf```
-```pip install pathlib```
-```pip install opencv-python```
-```pip install pytesseract```
-```pip install requests```
+```
+pip install kivy
+```
+
+```
+pip install fpdf
+```
+
+```
+pip install pathlib
+```
+
+```
+pip install opencv-python
+```
+
+```
+pip install pytesseract
+```
+
+```
+pip install requests
+```
 
 ## Tecnologias
 - [X] [Kivy](https://kivy.org/)
