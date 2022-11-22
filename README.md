@@ -45,6 +45,29 @@
 
 ## Como rodar a aplicação :arrow_forward:
 
+### Clonando o repositório remoto
+Em seu terminal, digite o seguinte trecho de código:
+```
+git clone https://github.com/strawndri/tca-tsi.py.git
+```
+
+### Baixando a versão mais atual do projeto
+1. Clique na última versão presente em "release";
+2. Clique na primeira opção, que diz "Source code (zip)";
+3. Extraia o arquivo compactado.
+
+### Download do pytesseract
+Para o funcionamento do programa, você precisará fazer o download do Pytesseract em sua máquina. 
+- [Repositório do Pytesseract para download](https://github.com/tesseract-ocr/tesseract/wiki/Downloads)
+
+Depois disso, você precisará executar em seu terminal os seguintes comandos:
+```pip install kivy```
+```pip install fpdf```
+```pip install pathlib```
+```pip install opencv-python```
+```pip install pytesseract```
+```pip install requests```
+
 ## Tecnologias
 - [X] [Kivy](https://kivy.org/)
 - [X] [Tkinter](https://docs.python.org/3/library/tkinter.html)
@@ -53,6 +76,7 @@
 - [X] [OpenCV-Python](https://pypi.org/project/opencv-python/)
 - [X] [PyTesseract](https://pypi.org/project/pytesseract/)
 - [X] [NumPy](https://numpy.org/doc/stable/)
+- [X] [Requests](https://pypi.org/project/requests/)
 
 ## Desenvolvedora
 
