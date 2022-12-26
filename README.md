@@ -86,5 +86,4 @@ pip install requests
 | :---: |
 
 ## Licença 
-
-Copyright :copyright: 2022 - Tsi.py
+MIT License - Copyright :copyright: 2022 - Andrieli
