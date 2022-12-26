@@ -68,6 +68,7 @@ pip install pathlib
 pip install opencv-python
 pip install pytesseract
 pip install requests
+```
 
 ## Tecnologias
 - [X] [Kivy](https://kivy.org/)
