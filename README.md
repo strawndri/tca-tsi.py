@@ -1,11 +1,14 @@
-# :snake: Tsi.py :snake:
-## Trabalho de Conclusão de Ano (TCA) - Linguagem de Programação 2022
+<h1 align="center"> </h1>
 
 <p align="center">
-  
+  <img src="https://i.imgur.com/HYZN8zO.png" alt='Banner. Imagem com fundo verde com uma borda cinza escuro em seu entorno. Ao centro, há um retângulo cinza escuro com o texto: "Trabalho de Conclusão de Ano (TCA) Linguagem de Programação - 2022". Ao lado esquerdo desse retângulo, há um ícone da linguagem de programação Python, com a representação de duas cobras com sentidos verticais opostos. Ao lado direito do retângulo, há a ilustração de uma cobra verde, com a língua para fora e cor olhos amarelos. Abaixo do retângulo cinza, há um retângulo menor verde, nele está escrito "Tsy.py".' />
 </p>
 
-> Status do Projeto: :construction: Em progresso 
+<p align="center">
+    <img src='https://img.shields.io/badge/License-MIT-f2a2b7?style=for-the-badge&logo=appveyor' alt='Badge. Retângulo dividido em duas partes: no lado esquerdo, o retângulo possui a cor cinza, um círculo azul com vazados e o texto "LICENSE"; no lado direito, o retângulo é cor-de-rosa e contém o texto "MIT".'>
+    <img src='https://img.shields.io/badge/Status-Em construção-F1E05A?style=for-the-badge&logo=appveyor' alt='Badge. Retângulo dividido em duas partes: no lado esquerdo, o retângulo possui a cor cinza, um círculo azul com vazados e o texto "STATUS"; no lado direito, o retângulo é amarelo e contém o texto "Em construção".'>
+</p>
+
 
 ### Tópicos 
 
@@ -80,7 +83,7 @@ pip install requests
 - [X] [NumPy](https://numpy.org/doc/stable/)
 - [X] [Requests](https://pypi.org/project/requests/)
 
-## Desenvolvedora
+## Feito com carinho por
 
 | [<img src="https://avatars.githubusercontent.com/u/62841828?v=4" width=115><br><sub>Andrieli Luci Gonçalves</sub>](https://github.com/strawndri) |
 | :---: |
