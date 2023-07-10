@@ -1,52 +1,45 @@
-<h1 align="center">Tsi.py</h1>
+# 👁️ | Tsi.py
 
-<p align="center">
-  <img src="https://i.imgur.com/qMB7p7p.png" alt='Banner. Imagem com fundo verde com uma borda cinza escuro em seu entorno. Ao centro, há um retângulo cinza escuro com o texto: "Trabalho de Conclusão de Ano (TCA) Linguagem de Programação - 2022". Ao lado esquerdo desse retângulo, há um ícone da linguagem de programação Python, com a representação de duas cobras com sentidos verticais opostos. Ao lado direito do retângulo, há a ilustração de uma cobra verde, com a língua para fora e cor olhos amarelos. Abaixo do retângulo cinza, há um retângulo menor verde, nele está escrito "Tsi.py".' />
-</p>
+![Licença](https://img.shields.io/badge/Licen%C3%A7a-MIT-f5b5ca.svg)
+![Status](https://img.shields.io/badge/Status-Concluído-abf285.svg)
 
-<p align="center">
-    <img src='https://img.shields.io/badge/License-MIT-f2a2b7?style=for-the-badge&logo=appveyor' alt='Badge. Retângulo dividido em duas partes: no lado esquerdo, o retângulo possui a cor cinza, um círculo azul com vazados e o texto "LICENSE"; no lado direito, o retângulo é cor-de-rosa e contém o texto "MIT".'>
-    <img src='https://img.shields.io/badge/Status-Em construção-F1E05A?style=for-the-badge&logo=appveyor' alt='Badge. Retângulo dividido em duas partes: no lado esquerdo, o retângulo possui a cor cinza, um círculo azul com vazados e o texto "STATUS"; no lado direito, o retângulo é amarelo e contém o texto "Em construção".'>
-</p>
+## Índice
 
+- [Sobre o projeto](#sobre-o-projeto)
+- [Aprendizagens](#aprendizagens)
+- [Como acessar o projeto?](#como-acessar-o-projeto)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Licença](#licença)
 
-### Tópicos 
+## Sobre o projeto
 
-:small_blue_diamond: [Descrição do projeto](#descrição-do-projeto)
+O Tsi.py, projeto que terá como base a linguagem de programação Python, será um programa com objetivo de auxiliar pessoas no processo de leitura de imagens com texto. A finalidade, nesse sentido, é, a partir de técnicas de visão computacional e machine learning (aprendizado de máquina), melhorar a experiência do usuário quando ele se depara com imagens com conteúdo textual. Para um melhor contato, haverá a presença de uma interface gráfica, o que determina, portanto, o projeto como software GUI (Graphical User Interface). 
 
-:small_blue_diamond: [Funcionalidades](#funcionalidades)
+O público alvo está associado, inicialmente, à questão da acessibilidade. Nesse sentido, pessoas com algum grau de deficiência — e que, portanto, não conseguem ler o que está escrito em imagens — ou que possuem certa dificuldade de leitura integram, tal pauta. Além disso, a aplicação também é útil aos estudantes que, em algum momento, desejam compartilhar o que escreveram manualmente para outras pessoas, bem como aos indivíduos que precisam lidar com textos advindos de imagens (copiar, alterar, adicionar a um projeto ou mesmo encaminhar por mensagem para alguém).
 
-:small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)
+**As funcionalidades do projeto são:**
+- _Acesso ao Guia_
+  - Clicar no botão "Acessar o Guia e ter um panorama geral de como funciona o software;
+  - Clicar na seta no canto superior esquerdo para retornar ao menu inicial.
 
-:small_blue_diamond: [Tecnologias](#tecnologias)
+- _Realização de uma nova leitura_
+  - Selecionar a opção de arquivo que se deseja efetuar a leitura, por meio de uma relação de dois botões, cujos nomes são "Imagem" e "Vídeo";
+  - Trazer o arquivo a ser lido ao programa por meio do botão "Upload";
+  - Trazer o arquivo a ser lido ao programa através de um campo para inserção de um link;
+  - Efetuar a leitura da imagem ao clicar no botão "Realizar leitura";
+  - Verificar a imagem ou o vídeo que foi trazido através do visor, localizado no lado direito da tela;
+  - Realizar leitura do texto extraído;
+  - Copiar o texto para a área de transferência através do botão de nome "Copiar texto";
+  - Fazer download do texto em formato .pdf e recebê-lo na página de Downloads do computador, a partir do botão "Download";
+  - Clicar na seta no canto superior esquerdo para retornar ao menu inicial.
 
----
+## Aprendizagens
+- Criação de interfaces gráficas tendo como base a linguagem de programação Python;
+- Algortitmos de reconhecimento de caracteres;
+- Funções e classes;
+- Como lidar com ambientes virtuais.
 
-## Descrição do projeto 
-
-<p align="justify">
-  O Tsi.py, projeto que terá como base a linguagem de programação Python, será um programa com objetivo de auxiliar pessoas no processo de leitura de imagens com texto. A finalidade, nesse sentido, é, a partir de técnicas de visão computacional e machine learning (aprendizado de máquina), melhorar a experiência do usuário quando ele se depara com imagens com conteúdo textual. Para um melhor contato, haverá a presença de uma interface gráfica, o que determina, portanto, o projeto como software GUI (Graphical User Interface). 
-
-  O público alvo está associado, inicialmente, à questão da acessibilidade. Nesse sentido, pessoas com algum grau de deficiência — e que, portanto, não conseguem ler o que está escrito em imagens — ou que possuem certa dificuldade de leitura integram, tal pauta. Além disso, a aplicação também é útil aos estudantes que, em algum momento, desejam compartilhar o que escreveram manualmente para outras pessoas, bem como aos indivíduos que precisam lidar com textos advindos de imagens (copiar, alterar, adicionar a um projeto ou mesmo encaminhar por mensagem para alguém).
-</p>
-
-## Funcionalidades
-### Acesso ao Guia
-- Clicar no botão “Acessar o Guia” e ter um panorama geral de como funciona o software;
-- Clicar na seta no canto superior esquerdo para retornar ao menu inicial.
-
-### Realização de uma nova leitura
-- Selecionar a opção de arquivo que se deseja efetuar a leitura, por meio de uma relação de dois botões, cujos nomes são “Imagem” e “Vídeo”;
-- Trazer o arquivo a ser lido ao programa por meio do botão “Upload”;
-- Trazer o arquivo a ser lido ao programa através de um campo para inserção de um link;
-- Efetuar a leitura da imagem ao clicar no botão “Realizar leitura”;
-- Verificar a imagem ou o vídeo que foi trazido através do visor, localizado no lado direito da tela;
-- Realizar leitura do texto extraído;
-- Copiar o texto para a área de transferência através do botão de nome “Copiar texto”;
-- Fazer download do texto em formato .pdf e recebê-lo na página de Downloads do computador, a partir do botão “Download”;
-- Clicar na seta no canto superior esquerdo para retornar ao menu inicial.
-
-## Como rodar a aplicação :arrow_forward:
+## Como acessar o projeto?
 
 ### Clonando o repositório remoto
 Em seu terminal, digite o seguinte trecho de código:
@@ -73,20 +66,20 @@ pip install pytesseract
 pip install requests
 ```
 
-## Tecnologias
-- [X] [Kivy](https://kivy.org/)
-- [X] [Tkinter](https://docs.python.org/3/library/tkinter.html)
-- [X] [FPDF](https://pypi.org/project/fpdf/)
-- [X] [PathLib](https://docs.python.org/3/library/pathlib.html)
-- [X] [OpenCV-Python](https://pypi.org/project/opencv-python/)
-- [X] [PyTesseract](https://pypi.org/project/pytesseract/)
-- [X] [NumPy](https://numpy.org/doc/stable/)
-- [X] [Requests](https://pypi.org/project/requests/)
+## Tecnologias utilizadas
+- [Python](https://docs.python.org/3/): Linguagem de programação;
+- [Kivy](https://kivy.org/): Framework Python de desenvolvimento de aplicativos multiplataforma com interfaces gráficas;
+- [FPDF](https://pypi.org/project/fpdf/): Biblioteca de geração de arquivos PDF;
+- [PathLib](https://docs.python.org/3/library/pathlib.html): Módulo de manipulação de caminhos de arquivo e diretório;
+- [OpenCV-Python](https://pypi.org/project/opencv-python/): Biblioteca de processamento de imagens e visão computacional;
+- [PyTesseract](https://pypi.org/project/pytesseract/): Biblioteca de reconhecimento óptico de caracteres (OCR);
+- [NumPy](https://numpy.org/doc/stable/): Biblioteca de manipulação de arrays multidimensionais e cálculos numéricos;
+- [Requests](https://pypi.org/project/requests/): Biblioteca de realizar requisições HTTP de forma simples e intuitiva.
 
-## Feito com carinho por
+## Licença
 
-| [<img src="https://avatars.githubusercontent.com/u/62841828?v=4" width=115><br><sub>Andrieli Luci Gonçalves</sub>](https://github.com/strawndri) |
-| :---: |
+Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT). Consulte o arquivo `LICENSE` para obter mais informações sobre os termos de licenciamento.
 
-## Licença 
-MIT License - Copyright :copyright: 2022 - Andrieli
+---
+
+✨ Feito com carinho por [Andrieli Gonçalves](https://github.com/strawndri).
